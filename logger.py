@@ -16,7 +16,7 @@ log_colors_config = {
     'CRITICAL': 'bold_red',
 }
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+logger_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 def _get_logger():
@@ -34,7 +34,7 @@ def _get_logger():
     logger.addHandler(console_handler)
 
     # 设置文件句柄
-    file_handler = logging.FileHandler('log.txt', encoding='utf8')
+    file_handler = logging.FileHandler(os.path.join(logger_dir, 'log.txt'), encoding='utf8')
     file_formatter = logging.Formatter(
         fmt='[%(asctime)s] %(filename)s -> %(funcName)s line:%(lineno)d [%(levelname)s]: %(message)s',
     )
